@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+body{
+    background-color: orange;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+.note{
+    width:20%;
+    margin-left: 40%;
+    border:2px solid black;
+    background-color: white;
+    color:black;
+    border-radius: 8px;
+    height: auto;
+}
+.noter{
+    display: flex;
+    align-items: center;
+}
+#plus{
+    display:block;
+    background-color: forestgreen;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    height: auto;
+    font-size: 150%;
+    padding: 3%;
+    width: auto;
+    border: none;
+    font-family: 'PT Sans', sans-serif;
+}
+.delete{
+    background-color:orangered;
+    font: bold 120%  cursive;
+    border-radius: 28px;
+}
+@media all and (max-width:950px){
+    .note{
+        width:40%;
+        margin-left: 30%;
+    }
+}
+#form input{
+   width:80%;
+   height:50px;
+   font-size: 25px;
+   font-family: 'PT Sans', sans-serif;
+}
+#form textarea{
+   font-family: 'PT Sans', sans-serif;
+}
+#add-note{
+    width:auto;
+    height: 50px;
+    font-size: 120%;
+    border: none;
+    background-color: gold;
+    color: white;
+    border-radius: 8px;
+    font-family: 'PT Sans', sans-serif;
+}

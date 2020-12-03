@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Taking App</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            const del=(n)=>{
+                let aer=JSON.parse(localStorage.getItem("quick"));
+                let array=[];
+                aer.forEach(item=>{
+                    if (aer[n]!==item){
+                        array.push(item);
+                    }
+                })
+                localStorage.setItem("quick",JSON.stringify(array));
+                location.reload()
+            }
+         function newNote(){
+             const input=$("<input type='text' id='new-note' />");
+             input.attr("placeholder","Note Title")
+             const textarea=$("<textarea id='note-body' cols='50' rows='20' placeholder='Note Content'></textarea>");
+             const btn=$(' <button id="add-note"></button>').text("Add this note")
+             $("#form").append(input)
+             br();
+             $("#form").append(textarea)
+             br();
+             $(btn).click(()=>create())
+             $("#form").append(btn)
+         }
+         function br(){
+            $("#form").html($("#form").html()+"<br><br>")
+         }
+         function create(){
+            let title=$("#new-note").val();
+            let body=$("#note-body").val();
+            $("#form").remove();
+            let aer=JSON.parse(localStorage.getItem("quick"));
+            if (aer==null || aer=="null"){aer=[]}
+            aer.push({title:title,body:body});
+            localStorage.setItem("quick",JSON.stringify(aer));
+           location.reload()
+         }
+         $("document").ready(function() {
+             let arr=JSON.parse(localStorage.getItem("quick"));
+             console.log(arr)
+             if (arr){
+               for (let index = 0; index < arr.length; index++) {
+                   const element = arr[index];
+                   let noter=$("<div class='noter'></div>");
+                   let note=$("<div class='note'></div>");
+                   let title=$("<h1></h1>").text(element.title);
+                   let body=$("<h2></h2>").text(element.body);
+                   let hr=$("<hr />");
+                  note.append(title);
+                  note.append(hr);
+                  note.append(body);
+                  noter.append(note);
+                  let buttons=$("<div></div>").html("&nbsp;&nbsp;");
+                  let button=$('<button class="delete"></button>').text("X");
+                  button.click(()=>del(index));
+                  $(buttons).append(button);
+                  $(noter).append(buttons);
+                  $(".container").append(noter);
+               }
+             }
+         })
+        </script>
+</head>
+<body>
+    <h1>Take Notes</h1>
+    <div class="container">
+
+    </div>
+   <button id="plus" onclick="newNote()">Add Note</button><br><br>
+   <div id="form"></div>
+</body>
+</html>
